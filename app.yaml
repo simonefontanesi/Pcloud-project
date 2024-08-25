@@ -1,0 +1,11 @@
+runtime: python39  # Puoi usare python38 o python311 a seconda della versione
+entrypoint: gunicorn -b :$PORT main:app  # Questo comando esegue Gunicorn per avviare la tua app
+
+handlers:
+  # Gestisci i file statici (CSS, JavaScript, immagini, ecc.)
+  - url: /static
+    static_dir: templates/assets
+
+  # Gestisci tutte le altre richieste (ad es. i file HTML)
+  - url: /.*
+    script: auto
